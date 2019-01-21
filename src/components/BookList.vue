@@ -1,11 +1,11 @@
 <template>
   <div class="book-list">
     <div class="row">
-      <div class="col-md-6 col-lg-4" v-for="book in books" :key="book.id">
+      <div class="col-md-6 col-lg-4" v-for="book in books" :key="book._id">
         <div class="book">
-          <img :src="defaultReviewImage" alt>
+          <img :src="book.cover || defaultCover" alt>
           <h3>
-            <router-link :to="'/detail/' + book.id" :key="$route.fullPath">{{ book.title }}</router-link>
+            <router-link :to="'/detail/' + book.isbn" :key="$route.fullPath">{{ book.title }}</router-link>
           </h3>
           <p>{{ book.description.substring(0, 100)+'...' }}</p>
           <p class="author">by {{ book.author }}</p>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import defaultReviewImage from '@/assets/logo.png'
+import defaultCover from '@/assets/logo.png'
 
 export default {
   data() {
     return {
-      defaultReviewImage: defaultReviewImage
+      defaultCover: defaultCover
     }
   },
   computed: {
@@ -35,9 +35,8 @@ export default {
 <style lang="scss" scoped>
 .book {
   img {
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
+    height: 200px;
+    margin: 0 auto 20px;
     display: block;
   }
   .author {

@@ -2,12 +2,12 @@
   <div>
     <div v-show="hide === 'form'" class="reviews-list">
       <h2>{{ title }}</h2>
-      <p v-if="reviewsList.length === 0">There are no reviews yet.</p>
+      <p v-if="reviews.length === 0">There are no reviews yet.</p>
       <div class="reviews" v-else>
-        <div v-for="review in reviewsList" :key="review.key">
-          <p class="review-text">{{ review.text }}</p>
+        <div class="review" v-for="review in reviews" :key="review.key">
+          <p v-show="review.text !== ''" class="review-text">"{{ review.text }}"</p>
           <Stars :rating="review.star" :nointeract="true"/>
-          <p class="reviewer-name">By Vu Duong</p>
+          <p class="reviewer-name">{{ review.reviewer }}</p>
         </div>
       </div>
     </div>
@@ -57,25 +57,31 @@ export default {
     addReview() {
       var review = {
         text: this.reviewText,
-        star: this.star
+        star: this.star,
+        reviewer: this.reviewer
       }
       this.$emit('add-review', review)
+      this.reviewText = ''
     }
   },
   data() {
     return {
       reviewText: this._reviewText,
-      star: 0,
-      reviewsList: []
+      star: 0
     }
   },
-  mounted() {
-    this.reviewsList = this.reviews
+  computed: {
+    reviewer() {
+      return this.$store.getters.signedInFullName
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.review {
+  margin-bottom: 20px;
+}
 .review-text {
   margin-bottom: 0;
 }

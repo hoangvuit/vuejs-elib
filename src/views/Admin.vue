@@ -3,11 +3,7 @@
     <div class="row">
       <div class="col-12">
         <h1>Admin</h1>
-        <div class="row">
-          <div class="col-md-6">
-            <AddBookForm/>
-          </div>
-        </div>
+        <AddBookForm/>
       </div>
     </div>
   </div>
@@ -17,7 +13,13 @@
 import AddBookForm from '@/components/AddBookForm'
 export default {
   name: 'Admin',
-  components: { AddBookForm }
+  components: { AddBookForm },
+  mounted: function() {
+    this.$store.dispatch('AUTHENTICATE')
+    if (!this.$store.getters.isSignedIn) {
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 

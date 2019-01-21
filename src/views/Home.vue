@@ -30,7 +30,12 @@ export default {
   name: 'home',
   components: { BookList },
   mounted: function() {
-    this.$store.dispatch('GET_ALL_BOOKS')
+    this.$store.dispatch('AUTHENTICATE')
+    if (this.$store.getters.isSignedIn) {
+      this.$store.dispatch('GET_BORROWED_BOOKS')
+    } else {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
@@ -211,6 +216,7 @@ $delay: $duration/6;
   margin: 0 auto;
   background-color: white;
   position: relative;
+  display: none;
 
   &:before,
   &:after {
