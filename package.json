@@ -14,15 +14,14 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
+    "vue-cli": "^2.9.6",
     "vue-google-oauth2": "^1.2.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "vuex-persist": "^2.0.0"
-  },
-  "devDependencies": {
+    "vuex-persist": "^2.0.0",
+    "@vue/cli-service": "^3.2.0",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
     "@vue/eslint-config-prettier": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
