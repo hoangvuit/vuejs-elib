@@ -12,6 +12,7 @@ export default new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
     fetching: true,
+    adding: false,
     books: [],
     isbn: '',
     borrows: [],
@@ -22,6 +23,9 @@ export default new Vuex.Store({
   mutations: {
     SET_LOADING(state, loading) {
       state.fetching = loading
+    },
+    SET_ADDING(state, adding) {
+      state.adding = adding
     },
     SET_BOOKS(state, books) {
       state.books = Object.keys(books).map(key => books[key])
@@ -44,6 +48,7 @@ export default new Vuex.Store({
   },
   actions: {
     ADD_BOOK(context, data) {
+      context.commit('SET_ADDING', true)
       Vue.axios
         .post('/upload', data.formData, {
           headers: {
@@ -57,7 +62,7 @@ export default new Vuex.Store({
             cover: response.data
           }
           Vue.axios.post('/book', bookData).then(() => {
-            console.log('Book added!')
+            context.commit('SET_ADDING', false)
           })
         })
         .catch(error => {
@@ -186,6 +191,7 @@ export default new Vuex.Store({
         email: state.authentication.U3,
         id: state.authentication.Eea
       }
-    }
+    },
+    isAdding: state => state.adding
   }
 })

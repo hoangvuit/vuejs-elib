@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :isSignedIn="isSignedIn"/>
-    <router-view/>
+    <Header :isSignedIn="isSignedIn" />
+    <router-view />
   </div>
 </template>
 <script>

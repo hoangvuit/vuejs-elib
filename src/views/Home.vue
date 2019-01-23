@@ -16,7 +16,7 @@
               <div class="shelf"></div>
             </div>
           </div>
-          <BookList/>
+          <BookList />
         </div>
       </div>
     </div>

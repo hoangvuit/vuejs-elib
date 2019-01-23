@@ -4,12 +4,24 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            <BookDetails v-if="details" :details="details"/>
+            <BookDetails v-if="details" :details="details" />
           </div>
           <div class="col-md-4">
             <div v-if="!isOutOfStock">
-              <a href="#" class="button" @click.prevent="borrow" v-if="!isBorrowedByMe">Borrow</a>
-              <a href="#" class="button return-book" @click.prevent="returnBook" v-else>Return</a>
+              <a
+                href="#"
+                class="button"
+                @click.prevent="borrow"
+                v-if="!isBorrowedByMe"
+                >Borrow</a
+              >
+              <a
+                href="#"
+                class="button return-book"
+                @click.prevent="returnBook"
+                v-else
+                >Return</a
+              >
             </div>
           </div>
         </div>
@@ -24,29 +36,41 @@
               class="button"
               @click.prevent="borrow"
               v-if="!isBorrowedByMe"
-            >Borrow this book</a>
+              >Borrow this book</a
+            >
             <a
               href="#"
               class="button return-book"
               @click.prevent="returnBook"
               v-else
-            >Return this book</a>
+              >Return this book</a
+            >
           </div>
           <p v-else class="oos-note">
             We only have
-            <span>{{ copies }} {{ copies > 1 ? 'copies' : 'copy'}}</span>
-            of this book.
-            <span v-html="borrowers">{{ borrowers }}</span> is borrowing this book.
+            <span>{{ copies }} {{ copies > 1 ? 'copies' : 'copy' }}</span> of
+            this book. <span v-html="borrowers">{{ borrowers }}</span> is
+            borrowing this book.
           </p>
-          <BookDetails v-if="details" :details="details"/>
+          <BookDetails v-if="details" :details="details" />
           <div class="row mt-5">
             <div class="col-12">
-              <Review v-once @add-review="addReview" title="Submit your review" hide="list"/>
+              <Review
+                v-once
+                @add-review="addReview"
+                title="Submit your review"
+                hide="list"
+              />
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <Review v-if="reviews" title="Reviews" :reviews="reviews" hide="form"/>
+          <Review
+            v-if="reviews"
+            title="Reviews"
+            :reviews="reviews"
+            hide="form"
+          />
         </div>
       </div>
     </div>
